@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Application | Charvex Technology University</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="admission-header">
+  <div class="admission-brand">
+    <img src="charvexunilogo.png" alt="CTU Logo">
+    <div>
+      <strong>CHARVEX TECHNOLOGY</strong>
+      <span>UNIVERSITY</span>
+    </div>
+  </div>
+  <a href="academic.html" class="back-home">Back to Academic Details</a>
+</header>
+
+<main class="admission-container">
+  <section class="admission-intro">
+    <span class="step-badge">STEP 3 OF 3</span>
+    <h1>Review Your Application</h1>
+    <p>Check your information carefully before submitting.</p>
+
+    <div class="progress-track">
+      <div class="progress-fill" style="width:100%"></div>
+    </div>
+  </section>
+
+  <section class="admission-card">
+    <div id="reviewContent">
+      <p>Loading your application details...</p>
+    </div>
+
+    <div class="form-actions academic-actions">
+      <button type="button" class="secondary-button"
+        onclick="window.location.href='academic.html'">
+        Previous
+      </button>
+
+      <button type="button" class="primary-button" id="submitApplication">
+        Submit Application
+      </button>
+    </div>
+    
+<div id="successPopup" class="success-overlay" hidden>
+  <div class="success-popup" role="dialog"
+       aria-modal="true" aria-labelledby="successTitle">
+
+    <div class="success-checkmark">✓</div>
+
+    <h2 id="successTitle">Application Submitted!</h2>
+
+    <p>
+      Your application has been submitted successfully.
+    </p>
+
+    <button type="button" id="successOkButton"
+            class="primary-button">
+      OK
+    </button>
+
+  </div>
+</div>
+
+  </section>
+</main>
+
+<footer class="admission-footer">
+  <p>© <span id="currentYear"></span> Charvex Technology University</p>
+  <p>Concept website — not an official or accredited university admission portal.</p>
+</footer>
+
+<script>
+document.getElementById("currentYear").textContent =
+  new Date().getFullYear();
+
+const personalDetails = JSON.parse(
+  sessionStorage.getItem("ctuPersonalDetails") || "null"
+);
+
+const academicDetails = JSON.parse(
+  sessionStorage.getItem("ctuAcademicDetails") || "null"
+);
+
+const reviewContent = document.getElementById("reviewContent");
+const submitButton = document.getElementById("submitApplication");
+
+function addReviewSection(title, details) {
+  const section = document.createElement("section");
+  section.className = "review-section";
+
+  const heading = document.createElement("h2");
+  heading.textContent = title;
+  section.appendChild(heading);
+
+  const list = document.createElement("dl");
+  list.className = "review-list";
+
+  details.forEach(function(item) {
+    const term = document.createElement("dt");
+    term.textContent = item[0];
+
+    const value = document.createElement("dd");
+    value.textContent = item[1] || "Not provided";
+
+    list.appendChild(term);
+    list.appendChild(value);
+  });
+
+  section.appendChild(list);
+  reviewContent.appendChild(section);
+}
+
+function formatSitting(sitting, title) {
+  if (!sitting) return;
+
+  addReviewSection(title, [
+    ["Examination", sitting.examType],
+    ["Examination Year", sitting.examYear]
+  ]);
+
+  const subjectSection = document.createElement("section");
+  subjectSection.className = "review-section";
+
+  const heading = document.createElement("h2");
+  heading.textContent = title + " Subjects";
+  subjectSection.appendChild(heading);
+
+  const list = document.createElement("ul");
+  list.className = "review-subject-list";
+
+  (sitting.subjects || []).forEach(function(result) {
+    const item = document.createElement("li");
+    item.textContent = result.subject + " — " + result.grade;
+    list.appendChild(item);
+  });
+
+  subjectSection.appendChild(list);
+  reviewContent.appendChild(subjectSection);
+}
+
+if (!personalDetails || !academicDetails) {
+  reviewContent.textContent =
+    "Your application details could not be found. Please return to Step 1 and complete the form.";
+
+  submitButton.disabled = true;
+} else {
+  reviewContent.textContent = "";
+
+  addReviewSection("Personal Information", [
+    ["Full Name", personalDetails.fullName],
+    ["Date of Birth", personalDetails.dateOfBirth],
+    ["Gender", personalDetails.gender],
+    ["Email", personalDetails.email],
+    ["Phone", personalDetails.phone],
+    ["State of Origin", personalDetails.state],
+    ["Country", personalDetails.country],
+    ["Address", personalDetails.address]
+  ]);
+
+  addReviewSection("Academic Information", [
+    ["Admission Type", academicDetails.admissionType],
+    ["Preferred Course", academicDetails.preferredCourse],
+    ["JAMB Registration Number", academicDetails.jambNumber],
+    ["JAMB Examination Year", academicDetails.utmeYear],
+    ["JAMB Score", academicDetails.utmeScore],
+    ["Secondary School", academicDetails.secondarySchool],
+    ["Previous Institution", academicDetails.previousInstitution],
+    ["Qualification", academicDetails.qualification],
+    ["Qualification Year", academicDetails.qualificationYear],
+    ["Certificate/Registration Number", academicDetails.qualificationNumber]
+  ]);
+
+  formatSitting(academicDetails.firstSitting, "First Sitting");
+
+  if (academicDetails.olevelSittings === "2") {
+    formatSitting(academicDetails.secondSitting, "Second Sitting");
+  }
+}
+
+
+const successPopup = document.getElementById("successPopup");
+const successOkButton = document.getElementById("successOkButton");
+
+
+
+submitButton.addEventListener("click", async function () {
+  const personalDetails = JSON.parse(
+    sessionStorage.getItem("ctuPersonalDetails") || "null"
+  );
+
+  const academicDetails = JSON.parse(
+    sessionStorage.getItem("ctuAcademicDetails") || "null"
+  );
+
+  if (!personalDetails || !academicDetails) {
+    alert("Application details are missing. Please return to the form and check your entries.");
+    return;
+  }
+
+  const originalText = submitButton.textContent;
+  submitButton.disabled = true;
+  submitButton.textContent = "Submitting...";
+
+  try {
+    const response = await fetch(
+      "https://rnpwtxmxkguuzwwipucf.supabase.co/functions/v1/submit-application",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucHd0eG14a2d1dXp3d2lwdWNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMTIzMjEsImV4cCI6MjEwNzU4ODMyMX0.NvrCOjrQlFtjHpD2-UP7kYNwm4wmHGTaU_IN3aQwsHM",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJucHd0eG14a2d1dXp3d2lwdWNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTIwMTIzMjEsImV4cCI6MjEwNzU4ODMyMX0.NvrCOjrQlFtjHpD2-UP7kYNwm4wmHGTaU_IN3aQwsHM",
+        },
+        body: JSON.stringify({
+          personalDetails,
+          academicDetails
+        })
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(
+        result.error || "We could not submit your application."
+      );
+    }
+
+    successPopup.hidden = false;
+
+    const popupMessage = successPopup.querySelector("p");
+    if (popupMessage && result.applicationNumber) {
+      popupMessage.textContent =
+        "Your application number is CTU-" +
+        result.applicationNumber +
+        ". Keep it for your records.";
+    }
+
+    sessionStorage.setItem(
+      "ctuApplicationSubmitted",
+      String(result.applicationNumber)
+    );
+
+  } catch (error) {
+    alert(error.message || "Submission failed. Please try again.");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalText;
+  }
+});
+successOkButton.addEventListener("click", function() {
+  window.close();
+});
+</script>
+</body>
+</html>

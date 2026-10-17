@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Information | CTU</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="admission-header">
+    <a href="index.html" class="admission-brand">
+      <img src="charvexunilogo.png" alt="CTU Logo">
+      <span>
+        <strong>CTU</strong>
+        CHARVEX TECHNOLOGY UNIVERSITY
+      </span>
+    </a>
+
+    <a href="admission.html" class="back-home">
+      ← Back to Personal Information
+    </a>
+  </header>
+
+  <main class="admission-container">
+
+    <section class="admission-intro">
+      <span class="step-badge">STEP 2 OF 3</span>
+      <h1>Academic Information</h1>
+      <p>
+        Tell us about your admission route, preferred course,
+        and educational qualifications.
+      </p>
+
+      <div class="progress-track">
+        <div class="progress-fill" style="width:66.666%"></div>
+      </div>
+    </section>
+
+    <section class="admission-card">
+      <form id="academicInformationForm">
+
+        <div class="form-heading">
+          <h2>Academic Details</h2>
+          <p>Fields marked with * are required.</p>
+        </div>
+
+        <div class="form-grid">
+
+          <div class="form-group full-width">
+            <label for="admissionType">Admission Route *</label>
+            <select id="admissionType" name="admissionType" required>
+              <option value="">Choose your admission route</option>
+              <option value="UTME">UTME</option>
+              <option value="Direct Entry">Direct Entry</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="preferredCourse">Preferred Course *</label>
+            <select id="preferredCourse" name="preferredCourse" required>
+              <option value="">Select your preferred course</option>
+
+              <optgroup label="Faculty of Computing and Digital Technology">
+                <option>Computer Science</option>
+                <option>Software Engineering</option>
+                <option>Cybersecurity</option>
+                <option>Information Technology</option>
+                <option>Computer Networks and Systems Administration</option>
+                <option>Web Development and Digital Systems</option>
+                <option>Mobile Application Development</option>
+                <option>Cloud Computing</option>
+                <option>Database Management Systems</option>
+                <option>Human-Computer Interaction</option>
+                <option>Computer Engineering Technology</option>
+                <option>Information Systems</option>
+                <option>Internet of Things (IoT)</option>
+                <option>Blockchain Technology</option>
+                <option>Game Development and Interactive Media</option>
+              </optgroup>
+
+              <optgroup label="Faculty of Engineering and Applied Technology">
+                <option>Robotics Engineering</option>
+                <option>Mechatronics Engineering</option>
+                <option>Electrical and Electronics Engineering</option>
+                <option>Computer Engineering</option>
+                <option>Telecommunications Engineering</option>
+                <option>Embedded Systems Engineering</option>
+                <option>Renewable Energy Engineering</option>
+                <option>Automation and Control Engineering</option>
+                <option>Industrial Engineering and Technology</option>
+                <option>Electronic Systems Engineering</option>
+                <option>Biomedical Engineering Technology</option>
+                <option>Mechanical Engineering</option>
+                <option>Artificial Intelligence Engineering</option>
+                <option>Smart Systems Engineering</option>
+                <option>Drone and Unmanned Systems Technology</option>
+              </optgroup>
+
+              <optgroup label="Faculty of Artificial Intelligence and Data Science">
+                <option>Artificial Intelligence</option>
+                <option>Data Science</option>
+                <option>Machine Learning</option>
+                <option>Statistics and Data Analytics</option>
+                <option>Big Data Analytics</option>
+                <option>Business Intelligence and Analytics</option>
+                <option>Computational Science</option>
+                <option>Applied Mathematics and Computing</option>
+                <option>Computer Vision</option>
+                <option>Natural Language Processing</option>
+                <option>Predictive Analytics</option>
+                <option>Intelligent Systems</option>
+                <option>Robotics and Autonomous Systems</option>
+                <option>Data Engineering</option>
+                <option>Bioinformatics and Computational Biology</option>
+              </optgroup>
+
+              <optgroup label="Faculty of Digital Business and Innovation">
+                <option>Business Information Technology</option>
+                <option>Information Systems Management</option>
+                <option>Digital Business Management</option>
+                <option>E-Commerce and Digital Trade</option>
+                <option>FinTech and Digital Finance</option>
+                <option>Technology Entrepreneurship</option>
+                <option>Digital Marketing and Analytics</option>
+                <option>Product Design and Management</option>
+                <option>Innovation and Technology Management</option>
+                <option>Business Analytics</option>
+                <option>Digital Project Management</option>
+                <option>Technology Consulting and Management</option>
+                <option>Digital Supply Chain Management</option>
+                <option>Human Resource Technology</option>
+                <option>Digital Transformation Management</option>
+              </optgroup>
+
+            </select>
+          </div>
+
+        </div>
+        
+        
+<!-- UTME / JAMB DETAILS -->
+<div id="utmeFields" class="form-grid route-fields">
+
+  <div class="form-group">
+    <label for="jambNumber">JAMB Registration Number *</label>
+    <input
+      type="text"
+      id="jambNumber"
+      name="jambNumber"
+      placeholder="Enter JAMB registration number"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="utmeYear">JAMB Examination Year *</label>
+    <select id="utmeYear" name="utmeYear">
+      <option value="">Select examination year</option>
+      <option>2022</option>
+      <option>2023</option>
+      <option>2024</option>
+      <option>2025</option>
+      <option>2026</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="utmeScore">JAMB Score *</label>
+    <input
+      type="number"
+      id="utmeScore"
+      name="utmeScore"
+      min="0"
+      max="400"
+      placeholder="Enter score (0–400)"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="secondarySchool">Secondary School Attended *</label>
+    <input
+      type="text"
+      id="secondarySchool"
+      name="secondarySchool"
+      placeholder="Enter school name"
+    >
+  </div>
+
+</div>
+
+<!-- DIRECT ENTRY DETAILS -->
+<div id="directEntryFields" class="form-grid route-fields">
+
+  <div class="form-group full-width">
+    <label for="previousInstitution">Previous Institution *</label>
+    <input
+      type="text"
+      id="previousInstitution"
+      name="previousInstitution"
+      placeholder="Enter institution name"
+    >
+  </div>
+
+  <div class="form-group">
+    <label for="qualification">Qualification Obtained *</label>
+    <select id="qualification" name="qualification">
+      <option value="">Select qualification</option>
+      <option>ND</option>
+      <option>NCE</option>
+      <option>HND</option>
+      <option>A-Level</option>
+      <option>IJMB</option>
+      <option>JUPEB</option>
+      <option>Other</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="qualificationYear">Qualification Year *</label>
+    <select id="qualificationYear" name="qualificationYear">
+      <option value="">Select year</option>
+      <option>2020</option>
+      <option>2021</option>
+      <option>2022</option>
+      <option>2023</option>
+      <option>2024</option>
+      <option>2025</option>
+      <option>2026</option>
+      <option>Earlier</option>
+    </select>
+  </div>
+
+  <div class="form-group full-width">
+    <label for="qualificationNumber">
+      Certificate or Registration Number *
+    </label>
+    <input
+      type="text"
+      id="qualificationNumber"
+      name="qualificationNumber"
+      placeholder="Enter certificate or registration number"
+    >
+  </div>
+
+</div>
+
+
+<!-- O'LEVEL RESULTS -->
+<section class="olevel-section" id="olevelSection">
+
+  <div class="form-heading">
+    <h2>O'Level Results</h2>
+    <p>Enter your examination details and at least five subjects with grades.</p>
+  </div>
+
+  <div class="form-grid">
+
+    <div class="form-group">
+      <label for="olevelSittings">Number of Sittings *</label>
+      <select id="olevelSittings" name="olevelSittings" required>
+        <option value="1">One Sitting</option>
+        <option value="2">Two Sittings</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="result-sitting" id="sittingOne">
+
+    <h3>First Sitting</h3>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="examTypeOne">Examination Type *</label>
+        <select id="examTypeOne" required>
+          <option value="">Select examination</option>
+          <option>WAEC</option>
+          <option>NECO</option>
+          <option>NABTEB</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="examYearOne">Examination Year *</label>
+        <select id="examYearOne" required>
+          <option value="">Select year</option>
+          <option>2020</option>
+          <option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+          <option>2024</option>
+          <option>2025</option>
+          <option>2026</option>
+          <option>Earlier</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="subject-list" id="subjectsOne"></div>
+
+    <button type="button" class="secondary-button add-subject-button"
+      data-list="subjectsOne">
+      + Add Another Subject
+    </button>
+
+    <p class="subject-message" id="messageOne">
+      Add at least five subjects and select a grade for each.
+    </p>
+
+  </div>
+
+  <div class="result-sitting" id="sittingTwo" hidden>
+
+    <h3>Second Sitting</h3>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="examTypeTwo">Examination Type *</label>
+        <select id="examTypeTwo">
+          <option value="">Select examination</option>
+          <option>WAEC</option>
+          <option>NECO</option>
+          <option>NABTEB</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="examYearTwo">Examination Year *</label>
+        <select id="examYearTwo">
+          <option value="">Select year</option>
+          <option>2020</option>
+          <option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+          <option>2024</option>
+          <option>2025</option>
+          <option>2026</option>
+          <option>Earlier</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="subject-list" id="subjectsTwo"></div>
+
+    <button type="button" class="secondary-button add-subject-button"
+      data-list="subjectsTwo">
+      + Add Another Subject
+    </button>
+
+    <p class="subject-message" id="messageTwo">
+      Add at least five subjects and select a grade for each.
+    </p>
+
+  </div>
+
+</section>
+
+
+        <div class="form-actions academic-actions">
+          <button type="button" class="secondary-button"
+            onclick="window.location.href='admission.html'">
+            ← Previous
+          </button>
+
+          <button type="submit" class="primary-button">
+            Continue to Review →
+          </button>
+        </div>
+
+      </form>
+    </section>
+
+    <p class="admission-disclaimer">
+      These courses are proposed for the CTU concept website.
+      Their inclusion does not confirm accreditation or approval
+      by any regulatory authority.
+    </p>
+
+  </main>
+
+  <footer class="admission-footer">
+    <p>© <span id="currentYear"></span> Charvex Technology University.</p>
+  </footer>
+
+  <script>
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+
+    const admissionType = document.getElementById("admissionType");
+
+    
+const utmeFields = document.getElementById("utmeFields");
+const directEntryFields = document.getElementById("directEntryFields");
+
+function updateAdmissionRoute() {
+  const isUTME = admissionType.value === "UTME";
+  const isDirectEntry = admissionType.value === "Direct Entry";
+
+  utmeFields.hidden = !isUTME;
+  directEntryFields.hidden = !isDirectEntry;
+
+  utmeFields.querySelectorAll("input, select").forEach(function(field) {
+    field.required = isUTME;
+  });
+
+  directEntryFields.querySelectorAll("input, select").forEach(function(field) {
+    field.required = isDirectEntry;
+  });
+}
+
+admissionType.addEventListener("change", updateAdmissionRoute);
+updateAdmissionRoute();
+
+    
+document.getElementById("academicInformationForm")
+  .addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!this.reportValidity()) return;
+
+    if (!validateAllOlevelResults()) {
+      document.getElementById("olevelSection").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+      return;
+    }
+
+    const academicDetails = {
+      admissionType: admissionType.value,
+      preferredCourse:
+        document.getElementById("preferredCourse").value,
+
+      jambNumber: document.getElementById("jambNumber").value,
+      utmeYear: document.getElementById("utmeYear").value,
+      utmeScore: document.getElementById("utmeScore").value,
+      secondarySchool:
+        document.getElementById("secondarySchool").value,
+
+      previousInstitution:
+        document.getElementById("previousInstitution").value,
+      qualification:
+        document.getElementById("qualification").value,
+      qualificationYear:
+        document.getElementById("qualificationYear").value,
+      qualificationNumber:
+        document.getElementById("qualificationNumber").value,
+
+      olevelSittings: olevelSittings.value,
+      firstSitting: collectOlevelSitting("subjectsOne"),
+      secondSitting: olevelSittings.value === "2"
+        ? collectOlevelSitting("subjectsTwo")
+        : null
+    };
+
+    sessionStorage.setItem(
+      "ctuAcademicDetails",
+      JSON.stringify(academicDetails)
+    );
+
+    window.location.href = "review.html";
+  });
+
+function collectOlevelSitting(listId) {
+  const rows = document.querySelectorAll(
+    "#" + listId + " .olevel-subject-row"
+  );
+
+  const results = [];
+
+  rows.forEach(function(row) {
+    const selects = row.querySelectorAll("select");
+
+    if (selects[0].value && selects[1].value) {
+      results.push({
+        subject: selects[0].value,
+        grade: selects[1].value
+      });
+    }
+  });
+
+  const isFirst = listId === "subjectsOne";
+
+  return {
+    examType: document.getElementById(
+      isFirst ? "examTypeOne" : "examTypeTwo"
+    ).value,
+
+    examYear: document.getElementById(
+      isFirst ? "examYearOne" : "examYearTwo"
+    ).value,
+
+    subjects: results
+  };
+}
+      
+/* ==================================
+   O'LEVEL SUBJECT AND GRADE SYSTEM
+================================== */
+
+const olevelSubjects = [
+  "English Language",
+  "Mathematics",
+  "Further Mathematics",
+  "Physics",
+  "Chemistry",
+  "Biology",
+  "Agricultural Science",
+  "Economics",
+  "Government",
+  "Geography",
+  "Literature in English",
+  "Commerce",
+  "Financial Accounting",
+  "Christian Religious Studies",
+  "Islamic Studies",
+  "History",
+  "Civic Education",
+  "Computer Studies",
+  "Data Processing",
+  "Technical Drawing",
+  "Basic Technology",
+  "Home Management",
+  "Food and Nutrition",
+  "Visual Arts",
+  "Music",
+  "Physical Education",
+  "Yoruba",
+  "Igbo",
+  "Hausa",
+  "French",
+  "Other"
+];
+
+const olevelGrades = [
+  "A1", "B2", "B3", "C4", "C5", "C6", "D7", "E8", "F9"
+];
+
+function createOlevelRow(listId) {
+  const row = document.createElement("div");
+  row.className = "olevel-subject-row";
+
+  const subject = document.createElement("select");
+  subject.name = listId + "Subject[]";
+  subject.setAttribute("aria-label", "O'Level subject");
+
+  const subjectPlaceholder = document.createElement("option");
+  subjectPlaceholder.value = "";
+  subjectPlaceholder.textContent = "Select subject";
+  subject.appendChild(subjectPlaceholder);
+
+  olevelSubjects.forEach(function(subjectName) {
+    const option = document.createElement("option");
+    option.value = subjectName;
+    option.textContent = subjectName;
+    subject.appendChild(option);
+  });
+
+  const grade = document.createElement("select");
+  grade.name = listId + "Grade[]";
+  grade.setAttribute("aria-label", "O'Level grade");
+
+  const gradePlaceholder = document.createElement("option");
+  gradePlaceholder.value = "";
+  gradePlaceholder.textContent = "Select grade";
+  grade.appendChild(gradePlaceholder);
+
+  olevelGrades.forEach(function(gradeName) {
+    const option = document.createElement("option");
+    option.value = gradeName;
+    option.textContent = gradeName;
+    grade.appendChild(option);
+  });
+
+  row.appendChild(subject);
+  row.appendChild(grade);
+
+  return row;
+}
+
+function updateOlevelSubjects(listId) {
+  const list = document.getElementById(listId);
+  const subjectSelects = list.querySelectorAll(
+    'select[name="' + listId + 'Subject[]"]'
+  );
+
+  const selectedSubjects = Array.from(subjectSelects)
+    .map(function(select) {
+      return select.value;
+    })
+    .filter(Boolean);
+
+  subjectSelects.forEach(function(select) {
+    Array.from(select.options).forEach(function(option) {
+      if (!option.value) return;
+
+      option.disabled =
+        selectedSubjects.includes(option.value) &&
+        select.value !== option.value;
+    });
+  });
+}
+
+function addOlevelRow(listId) {
+  const list = document.getElementById(listId);
+  const messageId = listId === "subjectsOne"
+    ? "messageOne"
+    : "messageTwo";
+  const message = document.getElementById(messageId);
+
+  if (list.children.length >= 20) {
+    message.textContent = "Maximum 20 subjects per sitting.";
+    message.className = "subject-message error";
+    return;
+  }
+
+  list.appendChild(createOlevelRow(listId));
+  updateOlevelSubjects(listId);
+
+  message.textContent = "Select a subject and its grade.";
+  message.className = "subject-message";
+}
+
+function initializeOlevelSitting(listId, button) {
+  for (let i = 0; i < 5; i++) {
+    addOlevelRow(listId);
+  }
+
+  button.addEventListener("click", function() {
+    addOlevelRow(listId);
+  });
+
+  document.getElementById(listId).addEventListener(
+    "change",
+    function(event) {
+      if (event.target.matches(
+        'select[name="' + listId + 'Subject[]"]'
+      )) {
+        updateOlevelSubjects(listId);
+      }
+    }
+  );
+}
+
+initializeOlevelSitting(
+  "subjectsOne",
+  document.querySelector('[data-list="subjectsOne"]')
+);
+
+initializeOlevelSitting(
+  "subjectsTwo",
+  document.querySelector('[data-list="subjectsTwo"]')
+);
+
+const olevelSittings = document.getElementById("olevelSittings");
+const sittingTwo = document.getElementById("sittingTwo");
+
+
+function updateOlevelSittings() {
+  const useTwoSittings = olevelSittings.value === "2";
+
+  sittingTwo.hidden = !useTwoSittings;
+
+  sittingTwo.querySelectorAll("input, select").forEach(function(field) {
+    field.required = useTwoSittings;
+  });
+}
+
+olevelSittings.addEventListener("change", updateOlevelSittings);
+updateOlevelSittings();
+
+function validateOlevelSitting(listId, messageId) {
+  const list = document.getElementById(listId);
+  const message = document.getElementById(messageId);
+  const rows = Array.from(list.querySelectorAll(".olevel-subject-row"));
+
+  const completedRows = rows.filter(function(row) {
+    const selects = row.querySelectorAll("select");
+    return selects[0].value !== "" && selects[1].value !== "";
+  });
+
+  const incompleteRows = rows.filter(function(row) {
+    const selects = row.querySelectorAll("select");
+    return (selects[0].value !== "" && selects[1].value === "") ||
+           (selects[0].value === "" && selects[1].value !== "");
+  });
+
+  if (incompleteRows.length > 0) {
+    message.textContent =
+      "Complete both the subject and grade for every row you start using.";
+    message.className = "subject-message error";
+    return false;
+  }
+
+  if (completedRows.length < 5) {
+    message.textContent =
+      "Please enter at least five subjects with their grades.";
+    message.className = "subject-message error";
+    return false;
+  }
+
+  message.textContent =
+    completedRows.length + " subjects completed.";
+  message.className = "subject-message success";
+  return true;
+}
+
+function validateAllOlevelResults() {
+  const firstValid = validateOlevelSitting("subjectsOne", "messageOne");
+
+  if (olevelSittings.value === "1") {
+    return firstValid;
+  }
+
+  const secondValid = validateOlevelSitting("subjectsTwo", "messageTwo");
+
+  return firstValid && secondValid;
+}
+  </script>
+
+</body>
+</html>
